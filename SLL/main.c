@@ -34,7 +34,7 @@ void test()
     slist_add_tail(list, 1);
     slist_add_tail(list, 8);
 
-    // List should now contain 8 elements
+    
     assert(slist_length(list) == 8);
 
     
