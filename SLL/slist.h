@@ -29,4 +29,8 @@ List* slist_add_tail(List *list,int32_t key);
 List* slist_delete_head(List *list);
 List* slist_delete_tail(List *list);
 
+//samlles and largest
+int32_t slist_smallest(const List *list);
+int32_t slist_largest(const List *list);
+
 #endif // SLIST_H_INCLUDED

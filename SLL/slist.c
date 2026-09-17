@@ -76,7 +76,7 @@ List* slist_add_head(List *list,int32_t data)
 
 List* slist_add_tail(List *list,int32_t data)
 {
-    Node *node;
+    Node *node = _list_node_new(data);
     if(list->tail!=NULL)
     {
         list->tail->next=node;
@@ -138,5 +138,36 @@ List* slist_delete_tail(List *list)
     return list;
 }
 
+int32_t slist_smallest(const List *list)
+{
+    Node *cur = list->head;
+    int32_t smallest = cur->data;
+
+    while(cur != NULL)
+    {
+        if(cur->data < smallest)
+        {
+            smallest = cur->data;
+        }
+        cur = cur->next;
+    }
+    return smallest;
+}
+
+int32_t slist_largest(const List *list)
+{
+    Node *cur = list->head;
+    int32_t largest = cur->data;
+
+    while(cur != NULL)
+    {
+        if(cur->data > largest)
+        {
+            largest = cur->data;
+        }
+        cur = cur->next;
+    }
+    return largest;
+}
 
 #endif // SLIST_C_INCLUDED
