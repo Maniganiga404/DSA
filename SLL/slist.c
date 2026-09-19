@@ -170,4 +170,54 @@ int32_t slist_largest(const List *list)
     return largest;
 }
 
+
+
+Node *slist_nth_from_end(List *list, uint32_t n)
+{
+   Node *fast = list->head;
+   Node *slow = list->head;
+   uint32_t i;
+
+   if(n==0)
+   {
+    return NULL;
+   }
+
+   for(i=0; i<n; i++)
+   {
+    if(fast == NULL)
+    {
+        return NULL;
+    }
+    fast = fast->next;
+   }
+
+   while(fast != NULL)
+   {
+    fast = fast->next;
+    slow = slow->next;
+   }
+   return slow;
+}
+
+//detect cycle
+
+int slist_detect_cycle(List *list)
+{
+    Node *slow = list->head;
+    Node *fast = list->head;
+
+    while(fast != NULL && fast->next != NULL)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+
+        if(slow == fast)
+        {
+            return 1; // Cycle detected
+        }
+    }
+    return 0; // No cycle
+}
+
 #endif // SLIST_C_INCLUDED

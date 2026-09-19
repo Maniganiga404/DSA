@@ -82,7 +82,35 @@ void test()
 
     list = slist_free(list);
 
-    printf("\nAll Day 4 tests passed successfully!\n");
+    printf("\nAll tests passed successfully!\n");
+
+
+    // Test nth node from end
+    slist_add_head(list, 10);
+    slist_add_head(list, 20);
+    slist_add_head(list, 30);
+
+
+    Node *result = slist_nth_from_end(list, 3);
+
+    if (result != NULL)
+        printf("3rd node from end: %d\n", result->data);
+
+    slist_free(list);
+
+
+
+    //Detect a cycle
+    List *cycle_list = slist_new();
+    slist_add_head(cycle_list, 1);
+    slist_add_head(cycle_list, 2);
+    slist_add_head(cycle_list, 3);
+
+    // Test cycle detection
+    assert(slist_detect_cycle(cycle_list) == 0); // No cycle
+    printf("No cycle detected in the list.\n");
+
+
 }
 
 int main()
