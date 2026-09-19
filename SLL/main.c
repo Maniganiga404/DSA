@@ -107,7 +107,7 @@ void test()
     slist_add_head(cycle_list, 3);
 
     // Test cycle detection
-    assert(slist_detect_cycle(cycle_list) == 0); // No cycle
+    assert(slist_detect_cycle(cycle_list) == 0); // No cycle detected
     printf("No cycle detected in the list.\n");
 
 
