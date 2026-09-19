@@ -220,4 +220,24 @@ int slist_detect_cycle(List *list)
     return 0; // No cycle
 }
 
+//Reverse a list
+List* slist_reverse(List *list)
+{
+    Node *old_head = list->head;
+    Node *prev = NULL;
+    Node *cur = list->head;
+    Node *next;
+
+    while(cur!=NULL)
+    {
+        next = cur->next;
+        cur->next = prev;
+        prev = cur;
+        cur = next;
+    }
+    list->head = prev;
+    list->tail = old_head;
+    return list;
+}
+
 #endif // SLIST_C_INCLUDED

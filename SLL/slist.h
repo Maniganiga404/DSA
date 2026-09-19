@@ -42,4 +42,7 @@ Node *slist_nth_from_end(List *list, uint32_t n);
 //Detect a cycle
 int slist_detect_cycle(List *list);
 
+//Reverse a list
+List* slist_reverse(List *list);
+
 #endif // SLIST_H_INCLUDED

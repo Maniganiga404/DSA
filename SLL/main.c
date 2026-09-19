@@ -5,6 +5,7 @@
 #include <assert.h>
 #include "slist.h"
 
+
 void test()
 {
     // Create a new empty list
@@ -86,17 +87,19 @@ void test()
 
 
     // Test nth node from end
-    slist_add_head(list, 10);
-    slist_add_head(list, 20);
-    slist_add_head(list, 30);
+    // Test nth node from end
+    List *nth_list = slist_new();
 
+    slist_add_head(nth_list, 10);
+    slist_add_head(nth_list, 20);
+    slist_add_head(nth_list, 30);
 
-    Node *result = slist_nth_from_end(list, 3);
+    Node *result = slist_nth_from_end(nth_list, 3);
 
     if (result != NULL)
         printf("3rd node from end: %d\n", result->data);
 
-    slist_free(list);
+    slist_free(nth_list);
 
 
 
@@ -110,8 +113,25 @@ void test()
     assert(slist_detect_cycle(cycle_list) == 0); // No cycle detected
     printf("No cycle detected in the list.\n");
 
+    // Reverse a list
+    List *reverse_list = slist_new();
+
+    slist_add_head(reverse_list, 10);
+    slist_add_head(reverse_list, 20);
+    slist_add_head(reverse_list, 30);
+
+    slist_reverse(reverse_list);
+
+    // Check reversed head and tail
+    assert(reverse_list->head->data == 10);
+    assert(reverse_list->tail->data == 30);
+
+    printf("List reversed successfully.\n");
+
+    reverse_list = slist_free(reverse_list);
 
 }
+
 
 int main()
 {
