@@ -240,4 +240,41 @@ List* slist_reverse(List *list)
     return list;
 }
 
+
+//Delete Duplicates
+
+List* slist_delete_duplicates(List *list)
+{
+    assert(list!=NULL);
+    Node *cur = list->head;
+
+    while(cur!=NULL)
+    {
+        Node *runner = cur;
+
+        while(runner->next!=NULL)
+        {
+            if(runner->next->data == cur->data)
+            {
+                Node *temp = runner->next;
+                runner->next = temp->next;
+
+                if(temp == list->tail)
+                {
+                    list->tail = runner;
+                }
+                
+                free(temp);
+                --list->length;
+            }
+            else
+            {
+                runner = runner->next;
+            }
+        }
+        cur = cur->next;
+    }
+    return list;
+}
+
 #endif // SLIST_C_INCLUDED

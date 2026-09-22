@@ -130,6 +130,42 @@ void test()
 
     reverse_list = slist_free(reverse_list);
 
+
+
+    //Delete Duplicates
+
+    // Delete duplicates
+{
+    List *list = slist_new();
+
+    slist_add_tail(list, 10);
+    slist_add_tail(list, 20);
+    slist_add_tail(list, 30);
+    slist_add_tail(list, 20);
+    slist_add_tail(list, 40);
+    slist_add_tail(list, 10);
+
+    slist_delete_duplicates(list);
+
+    // Check the remaining nodes
+    assert(list->length == 4);
+    assert(list->head->data == 10);
+    assert(list->tail->data == 40);
+
+    // Display the list
+    Node *temp = list->head;
+
+    while (temp != NULL)
+    {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+
+    printf("\nDuplicates deleted successfully.\n");
+
+    list = slist_free(list);
+}
+
 }
 
 

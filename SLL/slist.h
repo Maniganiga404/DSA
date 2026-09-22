@@ -45,4 +45,7 @@ int slist_detect_cycle(List *list);
 //Reverse a list
 List* slist_reverse(List *list);
 
+//Delete Duplicates
+List* slist_delete_duplicates(List *list);
+
 #endif // SLIST_H_INCLUDED
