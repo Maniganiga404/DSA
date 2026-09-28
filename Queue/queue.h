@@ -23,6 +23,14 @@ typedef struct _result_ QueueResult;
 #define QUEUE_FULL 2
 #define QUEUE_EMPTY 4
 
-Queue queue_new(int32_t size);
+Queue queue_new(uint32_t size);
 
-Queue queue_add(Queue *queue, uint32_t data, QueueResult *result);
+Queue *queue_add(Queue *queue, uint32_t data, QueueResult *result);
+
+Queue *queue_remove(Queue *queue, QueueResult *result);
+
+Queue *queue_peek(Queue *queue, QueueResult *result);
+
+uint32_t queue_isFull(const Queue *queue);
+
+uint32_t queue_isEmpty(const Queue *queue);

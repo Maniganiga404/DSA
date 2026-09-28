@@ -11,7 +11,7 @@ Queue queue_new(uint32_t size)
     return queue;
 }
 
-Queue queue_add(Queue *queue, uint32_t data, QueueResult *result)
+Queue *queue_add(Queue *queue, uint32_t data, QueueResult *result)
 {
     if(queue -> count < queue -> size)
     {
@@ -23,13 +23,13 @@ Queue queue_add(Queue *queue, uint32_t data, QueueResult *result)
         result -> status = QUEUE_OK;
     }
     else{
-        result -> data = QUEUE_FULL;
-        result -> status = RESULT_INVALID;
+        result -> data = RESULT_INVALID;
+        result -> status = QUEUE_FULL;
     }
     return queue;
 }
 
-Queue queue_remove(Queue *queue, QueueResult *result)
+Queue *queue_remove(Queue *queue, QueueResult *result)
 {
     if(queue -> count > 0)
     {
@@ -44,6 +44,31 @@ Queue queue_remove(Queue *queue, QueueResult *result)
         result -> status = QUEUE_EMPTY;
     }
     return queue;
+}
+
+Queue *queue_peek(Queue *queue, QueueResult *result)
+{
+    if(queue->count>0)
+    {
+        result->data = queue->q[queue->head];
+        result->status = QUEUE_OK;
+    }
+    else
+    {
+        result->data = RESULT_INVALID;
+        result->status = QUEUE_EMPTY;
+    }
+    return queue;
+}
+
+uint32_t queue_isFull(const Queue *queue)
+{
+    return queue->count == queue->size;
+}
+
+uint32_t queue_isEmpty(const Queue *queue)
+{
+    return (queue->count == 0 && queue->head == queue->tail);
 }
 
 
